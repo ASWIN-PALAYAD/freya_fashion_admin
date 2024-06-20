@@ -3,6 +3,9 @@ import { connectDb } from "@/lib/mongoDB";
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
+
+//create new collection 
+
 export const POST = async(req:NextRequest) => {
     try {
         const {userId} = auth();
@@ -33,3 +36,20 @@ export const POST = async(req:NextRequest) => {
         return new NextResponse('internal Server Error',{status:500});
     }
 }
+
+// get all collections in admin panel
+
+export const GET = async(req:NextRequest) => {
+    try {
+        await connectDb();
+        const collections = await Collection.find().sort({createdAt:'desc'});
+        return NextResponse.json(collections,{status:200});
+    } catch (error) {
+        console.log('[collections-GET',error);
+        return new NextResponse('internal server error',{status:500});
+        
+    }
+}
+
+
+
