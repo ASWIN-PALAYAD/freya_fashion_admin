@@ -10,6 +10,7 @@ import {
 import "../globals.css";
 import LeftSideBar from "@/components/layout/LeftSideBar";
 import TopBar from "@/components/layout/TopBar";
+import { ToasterProvider } from "@/lib/ToastProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
+          <ToasterProvider/>
           {/* <header>
             <SignedOut>
               <SignInButton />
