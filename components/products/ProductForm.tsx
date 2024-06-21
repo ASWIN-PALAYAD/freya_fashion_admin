@@ -363,7 +363,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
             <Button
               type="button"
               className="bg-red-600 text-white "
-              onClick={() => router.push("/collections")}
+              onClick={() => router.push("/products")}
             >
               Discard
             </Button>
