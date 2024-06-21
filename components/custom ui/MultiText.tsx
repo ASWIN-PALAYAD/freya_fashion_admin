@@ -21,7 +21,7 @@ const MultiText: React.FC<MultiTextProps> = ({
 }) => {
   const [inputValue, setinputValue] = useState("");
 
-  const addTag = (item: string) => {
+  const addValue = (item: string) => {
     onChange(item);
     setinputValue("");
   };
@@ -35,24 +35,24 @@ const MultiText: React.FC<MultiTextProps> = ({
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
-            addTag(inputValue);
+            addValue(inputValue);
           }
         }}
       />
       <div className="flex gap-1 flex-wrap mt-4">
-        {value.map((tag, index) => (
+        {value.map((item, index) => (
           <Badge
             key={index}
             className="bg-grey-1 text-white rounded-xl outline-none"
           >
-            {tag}
-            <Button
+            {item}
+            <button
               className="ml-1 rounded-full outline-none hover:bg-red-1"
-              onClick={() => onRemove(tag)}
-              size='sm'
+              onClick={() => onRemove(item)}
+              
             >
               <X  className="h-3 w-3"/>
-            </Button>
+            </button>
           </Badge>
         ))}
       </div>
