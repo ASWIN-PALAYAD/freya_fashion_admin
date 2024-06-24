@@ -1,11 +1,12 @@
 //delete collection from admin panel
 
 import Collection from "@/lib/models/Collection";
+import Product from "@/lib/models/Product";
 import { connectDb } from "@/lib/mongoDB";
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
-//get all collection
+//get single collection
 export const GET = async (
   req: NextRequest,
   { params }: { params: { collectionId: string } }
@@ -55,7 +56,7 @@ export const POST = async (
       { new: true }
     );
     await collection.save();
-    return NextResponse.json(collection,{status:200})
+    return NextResponse.json(collection, { status: 200 });
   } catch (error) {
     console.log("[collectionId_post]", error);
     return new NextResponse("internal server error", { status: 500 });
@@ -74,6 +75,12 @@ export const DELETE = async (
     }
     await connectDb();
     await Collection.findByIdAndDelete(params.collectionId);
+
+    await Product.updateMany(
+      { collections: params.collectionId },
+      { $pull: { collections: params.collectionId } }
+    );
+
     return new NextResponse("Collection is deleted", { status: 200 });
   } catch (error) {
     console.log("[collectionId_delete", error);

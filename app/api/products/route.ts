@@ -30,7 +30,7 @@ export const POST = async (req: NextRequest) => {
         status: 400,
       });
     }
-    const newProducct = await Product.create({
+    const newProduct = await Product.create({
       title,
       description,
       media,
@@ -42,8 +42,19 @@ export const POST = async (req: NextRequest) => {
       price,
       expense,
     });
-    await newProducct.save();
-    return NextResponse.json(newProducct, { status: 200 });
+    await newProduct.save();
+
+    if(collections){
+      for(const collectionId of collections){
+        const collection = await Collection.findById(collectionId);
+        if(collection){
+          collection.products.push(newProduct._id);
+          await collection.save();
+        }
+      }
+    }
+
+    return NextResponse.json(newProduct, { status: 200 });
   } catch (error) {
     console.log("[products_post]", error);
     return new NextResponse("Internal error", { status: 500 });

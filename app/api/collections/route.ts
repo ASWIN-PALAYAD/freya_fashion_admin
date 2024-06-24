@@ -9,7 +9,6 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async(req:NextRequest) => {
     try {
         const {userId} = auth();
-        console.log(userId);
         
         if(!userId){
             return new NextResponse("Unauthorized",{status:403});
@@ -43,6 +42,7 @@ export const GET = async(req:NextRequest) => {
     try {
         await connectDb();
         const collections = await Collection.find().sort({createdAt:'desc'});
+        
         return NextResponse.json(collections,{status:200});
     } catch (error) {
         console.log('[collections-GET',error);
