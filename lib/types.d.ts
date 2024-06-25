@@ -21,3 +21,11 @@ type ProductType = {
     createdAt:Date;
     updatedAt:Date;
 }
+
+type OrderColumnType = {
+    _id:string,
+    customer:string,
+    product:number,
+    totalAmount:number,
+    createdAt:string
+}
