@@ -12,7 +12,6 @@ export async function OPTIONS() {
 }
 
 export async function POST(req: NextRequest) {
-  console.log('hi from checkout');
   
   try {
     const { cartItems, customer } = await req.json();

@@ -17,7 +17,6 @@ export const POST = async (req: NextRequest) => {
 
     if (event.type === "checkout.session.completed") {
       const session = event.data.object
-      console.log("[web hook]",session);
       
 
       const customerInfo = {

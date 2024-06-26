@@ -16,7 +16,7 @@ export const GET = async(req:NextRequest) => {
                 customer:customer.name,
                 products:order.products.length,
                 totalAmount:order.totalAmount,
-                createdAt:format(order.createdAt,"MM/dd/yyyy")
+                createdAt:format(order.createdAt,"MMM/do/yyyy")
             }
         }));
         return NextResponse.json(orderDetails,{status:200});
