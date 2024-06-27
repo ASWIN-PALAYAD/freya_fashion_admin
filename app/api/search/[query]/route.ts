@@ -18,3 +18,4 @@ export const  GET = async(req:NextRequest,{params}:{params:{query:string}}) => {
         return new NextResponse("Internal server error",{status:500});
     }
 }
+export const dynamic = "force-dynamic"
