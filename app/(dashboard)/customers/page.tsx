@@ -7,7 +7,7 @@ import { connectDb } from '@/lib/mongoDB'
 const Customers = async () => {
   await connectDb()
 
-  const customers = await Customer.find().sort({ createdAt: "desc" })
+  const customers = await Customer.find().sort({ createdAt: "desc" }) 
 
   return (
     <div className='px-10 py-5'>
