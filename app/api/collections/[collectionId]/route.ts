@@ -1,4 +1,4 @@
-//delete collection from admin panel
+
 
 import Collection from "@/lib/models/Collection";
 import Product from "@/lib/models/Product";
